@@ -1,0 +1,54 @@
+
+<div class="pagina">
+  <div class="cabecalho">
+    <div>
+      <h2>Solicitações</h2>
+      <p>Gerencie as solicitações internas</p>
+    </div>
+
+    <button class="botao-novo">
+      + Nova solicitação
+    </button>
+  </div>
+
+  <p *ngIf="carregando">Carregando solicitações...</p>
+
+  <p class="mensagem-erro" *ngIf="erro">
+    {{ erro }}
+  </p>
+
+  <div class="tabela-container" *ngIf="!carregando && !erro">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Categoria</th>
+          <th>Solicitante</th>
+          <th>Status</th>
+          <th>Data de criação</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let solicitacao of solicitacoes">
+          <td>{{ solicitacao.id }}</td>
+          <td>{{ solicitacao.titulo }}</td>
+          <td>{{ solicitacao.categoria }}</td>
+          <td>{{ solicitacao.solicitanteNome }}</td>
+          <td>{{ solicitacao.status }}</td>
+          <td>{{ solicitacao.dataCriacao | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>
+            <button class="botao-editar">Editar</button>
+            <button class="botao-excluir">Excluir</button>
+          </td>
+        </tr>
+
+        <tr *ngIf="solicitacoes.length === 0">
+          <td colspan="7">Nenhuma solicitação cadastrada.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
