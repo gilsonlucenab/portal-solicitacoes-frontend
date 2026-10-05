@@ -1,24 +1,278 @@
-
 <div class="pagina">
+
+  <!-- CABEÇALHO -->
   <div class="cabecalho">
     <div>
       <h2>Solicitações</h2>
       <p>Gerencie as solicitações internas</p>
     </div>
 
-    <button class="botao-novo">
+    <button
+      class="botao-novo"
+      type="button"
+      (click)="novaSolicitacao()"
+    >
       + Nova solicitação
     </button>
   </div>
 
-  <p *ngIf="carregando">Carregando solicitações...</p>
 
-  <p class="mensagem-erro" *ngIf="erro">
+  <!-- FILTROS -->
+  <div class="card-filtros">
+
+    <div class="titulo-filtros">
+      <div>
+        <h3>Consultar solicitações</h3>
+        <p>Utilize os filtros para encontrar uma solicitação.</p>
+      </div>
+    </div>
+
+    <div class="linha-filtros">
+
+      <!-- TÍTULO -->
+      <div class="filtro">
+        <label for="filtroTitulo">
+          Título
+        </label>
+
+        <input
+          id="filtroTitulo"
+          type="text"
+          placeholder="Digite o título"
+          [(ngModel)]="filtroTitulo"
+          (input)="filtrarSolicitacoes()"
+        >
+      </div>
+
+
+      <!-- CATEGORIA -->
+      <div class="filtro">
+        <label for="filtroCategoria">
+          Categoria
+        </label>
+
+        <select
+          id="filtroCategoria"
+          [(ngModel)]="filtroCategoria"
+          (change)="filtrarSolicitacoes()"
+        >
+          <option value="">
+            Todas
+          </option>
+
+          <option value="TI">
+            TI
+          </option>
+
+          <option value="RH">
+            RH
+          </option>
+
+          <option value="FINANCEIRO">
+            Financeiro
+          </option>
+
+          <option value="ADMINISTRATIVO">
+            Administrativo
+          </option>
+        </select>
+      </div>
+
+
+      <!-- STATUS -->
+      <div class="filtro">
+        <label for="filtroStatus">
+          Status
+        </label>
+
+        <select
+          id="filtroStatus"
+          [(ngModel)]="filtroStatus"
+          (change)="filtrarSolicitacoes()"
+        >
+          <option value="">
+            Todos
+          </option>
+
+          <option value="ABERTO">
+            Aberto
+          </option>
+
+          <option value="EM_ATENDIMENTO">
+            Em atendimento
+          </option>
+
+          <option value="CONCLUIDO">
+            Concluído
+          </option>
+        </select>
+      </div>
+
+
+      <!-- LIMPAR -->
+      <div class="filtro-acoes">
+
+        <button
+          class="botao-limpar"
+          type="button"
+          (click)="limparFiltros()"
+        >
+          Limpar filtros
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- FORMULÁRIO -->
+  <div
+    class="card-formulario"
+    *ngIf="editando || criando"
+  >
+
+    <div class="titulo-formulario">
+      <div>
+        <h3>
+          {{ criando ? 'Nova solicitação' : 'Editar solicitação' }}
+        </h3>
+
+        <p>
+          {{
+            criando
+              ? 'Preencha os dados para registrar uma nova solicitação.'
+              : 'Altere os dados da solicitação.'
+          }}
+        </p>
+      </div>
+    </div>
+
+
+    <div class="linha-formulario">
+
+      <!-- TÍTULO -->
+      <div class="campo campo-titulo">
+
+        <label for="titulo">
+          Título
+        </label>
+
+        <input
+          id="titulo"
+          type="text"
+          placeholder="Digite o título da solicitação"
+          [(ngModel)]="formulario.titulo"
+        >
+
+      </div>
+
+
+      <!-- CATEGORIA -->
+      <div class="campo campo-categoria">
+
+        <label for="categoria">
+          Categoria
+        </label>
+
+        <select
+          id="categoria"
+          [(ngModel)]="formulario.categoria"
+        >
+          <option value="">
+            Selecione uma categoria
+          </option>
+
+          <option value="TI">
+            TI
+          </option>
+
+          <option value="RH">
+            RH
+          </option>
+
+          <option value="FINANCEIRO">
+            Financeiro
+          </option>
+
+          <option value="ADMINISTRATIVO">
+            Administrativo
+          </option>
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <!-- DESCRIÇÃO -->
+    <div class="campo">
+
+      <label for="descricao">
+        Descrição
+      </label>
+
+      <textarea
+        id="descricao"
+        rows="5"
+        placeholder="Descreva detalhadamente a solicitação..."
+        [(ngModel)]="formulario.descricao"
+      ></textarea>
+
+    </div>
+
+
+    <!-- AÇÕES DO FORMULÁRIO -->
+    <div class="acoes-formulario">
+
+      <button
+        class="botao-cancelar"
+        type="button"
+        (click)="cancelarEdicao()"
+      >
+        Cancelar
+      </button>
+
+      <button
+        class="botao-salvar"
+        type="button"
+        (click)="criando ? salvarNovaSolicitacao() : salvarEdicao()"
+      >
+        {{ criando ? 'Criar solicitação' : 'Salvar alterações' }}
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- CARREGAMENTO -->
+  <p
+    class="mensagem-carregando"
+    *ngIf="carregando"
+  >
+    Carregando solicitações...
+  </p>
+
+
+  <!-- ERRO -->
+  <p
+    class="mensagem-erro"
+    *ngIf="erro"
+  >
     {{ erro }}
   </p>
 
-  <div class="tabela-container" *ngIf="!carregando && !erro">
+
+  <!-- TABELA -->
+  <div
+    class="tabela-container"
+    *ngIf="!carregando && !erro"
+  >
+
     <table>
+
       <thead>
         <tr>
           <th>ID</th>
@@ -31,24 +285,127 @@
         </tr>
       </thead>
 
+
       <tbody>
-        <tr *ngFor="let solicitacao of solicitacoes">
-          <td>{{ solicitacao.id }}</td>
-          <td>{{ solicitacao.titulo }}</td>
-          <td>{{ solicitacao.categoria }}</td>
-          <td>{{ solicitacao.solicitanteNome }}</td>
-          <td>{{ solicitacao.status }}</td>
-          <td>{{ solicitacao.dataCriacao | date:'dd/MM/yyyy HH:mm' }}</td>
+
+        <tr *ngFor="let solicitacao of solicitacoesFiltradas">
+
           <td>
-            <button class="botao-editar">Editar</button>
-            <button class="botao-excluir">Excluir</button>
+            <span class="id-solicitacao">
+              #{{ solicitacao.id }}
+            </span>
           </td>
+
+          <td>
+            <span class="titulo-solicitacao">
+              {{ solicitacao.titulo }}
+            </span>
+          </td>
+
+          <td>
+            {{ solicitacao.categoria }}
+          </td>
+
+          <td>
+            {{ solicitacao.solicitanteNome }}
+          </td>
+
+          <td>
+
+            <span
+              class="status"
+              [ngClass]="{
+                'status-aberto': solicitacao.status === 'ABERTO',
+                'status-atendimento': solicitacao.status === 'EM_ATENDIMENTO',
+                'status-concluido': solicitacao.status === 'CONCLUIDO'
+              }"
+            >
+              {{
+                solicitacao.status === 'ABERTO'
+                  ? 'Aberto'
+                  : solicitacao.status === 'EM_ATENDIMENTO'
+                    ? 'Em atendimento'
+                    : 'Concluído'
+              }}
+            </span>
+
+          </td>
+
+          <td>
+            {{ solicitacao.dataCriacao | date:'dd/MM/yyyy HH:mm' }}
+          </td>
+
+
+          <!-- AÇÕES -->
+          <td>
+
+            <div class="acoes-tabela">
+
+              <!-- ATENDER -->
+              <button
+                class="botao-atender"
+                type="button"
+                (click)="alterarStatus(solicitacao.id, 'EM_ATENDIMENTO')"
+                *ngIf="solicitacao.status === 'ABERTO'"
+              >
+                Atender
+              </button>
+
+
+              <!-- CONCLUIR -->
+              <button
+                class="botao-concluir"
+                type="button"
+                (click)="alterarStatus(solicitacao.id, 'CONCLUIDO')"
+                *ngIf="solicitacao.status === 'EM_ATENDIMENTO'"
+              >
+                Concluir
+              </button>
+
+
+              <!-- EDITAR -->
+              <button
+                class="botao-editar"
+                type="button"
+                (click)="editarSolicitacao(solicitacao)"
+                *ngIf="solicitacao.status !== 'CONCLUIDO'"
+              >
+                Editar
+              </button>
+
+
+              <!-- EXCLUIR -->
+              <button
+                class="botao-excluir"
+                type="button"
+                (click)="excluirSolicitacao(solicitacao.id)"
+              >
+                Excluir
+              </button>
+
+            </div>
+
+          </td>
+
         </tr>
 
-        <tr *ngIf="solicitacoes.length === 0">
-          <td colspan="7">Nenhuma solicitação cadastrada.</td>
+
+        <!-- SEM RESULTADOS -->
+        <tr *ngIf="solicitacoesFiltradas.length === 0">
+
+          <td
+            colspan="7"
+            class="sem-registros"
+          >
+            Nenhuma solicitação encontrada com os filtros informados.
+          </td>
+
         </tr>
+
       </tbody>
+
     </table>
+
   </div>
+
 </div>

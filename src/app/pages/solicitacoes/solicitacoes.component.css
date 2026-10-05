@@ -1,7 +1,14 @@
 .pagina {
   padding: 30px;
   font-family: Arial, sans-serif;
+  background: #f8fafc;
+  min-height: 100vh;
 }
+
+
+/* =========================
+   CABEÇALHO
+========================= */
 
 .cabecalho {
   display: flex;
@@ -11,38 +18,186 @@
 }
 
 .cabecalho h2 {
-  margin-bottom: 5px;
+  margin: 0 0 5px;
+  color: #111827;
+  font-size: 24px;
 }
 
 .cabecalho p {
-  color: #666;
-  margin-top: 0;
+  color: #6b7280;
+  margin: 0;
+  font-size: 14px;
 }
+
+
+/* =========================
+   BOTÃO NOVO
+========================= */
 
 button {
   border: none;
+  border-radius: 6px;
   padding: 9px 14px;
-  border-radius: 5px;
+  font-size: 14px;
   cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  opacity: 0.9;
 }
 
 .botao-novo {
   background: #2563eb;
   color: white;
+  font-weight: 600;
+  padding: 11px 18px;
 }
 
-.botao-editar {
-  background: #eab308;
-  margin-right: 6px;
+.botao-novo:hover {
+  background: #1d4ed8;
 }
 
-.botao-excluir {
-  background: #dc2626;
+
+/* =========================
+   FORMULÁRIO
+========================= */
+
+.card-formulario {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.titulo-formulario {
+  margin-bottom: 22px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.titulo-formulario h3 {
+  margin: 0 0 5px;
+  color: #111827;
+  font-size: 18px;
+}
+
+.titulo-formulario p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+
+/* =========================
+   CAMPOS
+========================= */
+
+.linha-formulario {
+  display: flex;
+  gap: 20px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+  width: 100%;
+}
+
+.campo-titulo {
+  flex: 2;
+}
+
+.campo-categoria {
+  flex: 1;
+}
+
+.campo label {
+  margin-bottom: 7px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.campo input,
+.campo textarea,
+.campo select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #111827;
+  background: white;
+  outline: none;
+  transition: 0.2s;
+}
+
+.campo input:focus,
+.campo textarea:focus,
+.campo select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.campo textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+  color: #9ca3af;
+}
+
+
+/* =========================
+   BOTÕES DO FORMULÁRIO
+========================= */
+
+.acoes-formulario {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.botao-cancelar {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.botao-cancelar:hover {
+  background: #e5e7eb;
+}
+
+.botao-salvar {
+  background: #2563eb;
   color: white;
+  font-weight: 600;
 }
+
+.botao-salvar:hover {
+  background: #1d4ed8;
+}
+
+
+/* =========================
+   TABELA
+========================= */
 
 .tabela-container {
   overflow-x: auto;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 table {
@@ -51,16 +206,261 @@ table {
   background: white;
 }
 
-th, td {
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
+th,
+td {
+  padding: 13px 14px;
+  border-bottom: 1px solid #e5e7eb;
   text-align: left;
+  font-size: 14px;
 }
 
 th {
-  background: #f3f4f6;
+  background: #f8fafc;
+  color: #374151;
+  font-weight: 600;
+}
+
+tbody tr:hover {
+  background: #f9fafb;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.id-solicitacao {
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.titulo-solicitacao {
+  color: #111827;
+  font-weight: 600;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.status {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-aberto {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.status-atendimento {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-concluido {
+  background: #dcfce7;
+  color: #166534;
+}
+
+
+/* =========================
+   AÇÕES DA TABELA
+========================= */
+
+.acoes-tabela {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.botao-atender {
+  background: #2563eb;
+  color: white;
+}
+
+.botao-concluir {
+  background: #16a34a;
+  color: white;
+}
+
+.botao-editar {
+  background: #eab308;
+  color: #422006;
+}
+
+.botao-excluir {
+  background: #dc2626;
+  color: white;
+}
+
+
+/* =========================
+   MENSAGENS
+========================= */
+
+.mensagem-carregando {
+  color: #6b7280;
+  padding: 15px 0;
 }
 
 .mensagem-erro {
   color: #dc2626;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.sem-registros {
+  text-align: center;
+  color: #6b7280;
+  padding: 30px !important;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 768px) {
+
+  .pagina {
+    padding: 20px;
+  }
+
+  .cabecalho {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .linha-formulario {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .acoes-formulario {
+    justify-content: stretch;
+  }
+
+  .acoes-formulario button {
+    flex: 1;
+  }
+
+}
+
+/* =========================
+   FILTROS
+========================= */
+
+.card-filtros {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.titulo-filtros {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.titulo-filtros h3 {
+  margin: 0 0 5px;
+  color: #111827;
+  font-size: 17px;
+}
+
+.titulo-filtros p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.linha-filtros {
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+}
+
+.filtro {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.filtro label {
+  margin-bottom: 7px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.filtro input,
+.filtro select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #111827;
+  background: white;
+  outline: none;
+}
+
+.filtro input:focus,
+.filtro select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.filtro-acoes {
+  display: flex;
+  align-items: flex-end;
+}
+
+.botao-limpar {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  white-space: nowrap;
+}
+
+.botao-limpar:hover {
+  background: #e5e7eb;
+}
+
+
+/* =========================
+   RESPONSIVO - FILTROS
+========================= */
+
+@media (max-width: 768px) {
+
+  .linha-filtros {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filtro {
+    width: 100%;
+  }
+
+  .filtro-acoes {
+    width: 100%;
+  }
+
+  .botao-limpar {
+    width: 100%;
+  }
+
 }
