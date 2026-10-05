@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+
 import {
   Solicitacao,
   SolicitacaoService
@@ -9,10 +11,16 @@ import {
 @Component({
   selector: 'app-solicitacoes',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterLink,
+    RouterLinkActive
+  ],
   templateUrl: './solicitacoes.component.html',
   styleUrl: './solicitacoes.component.css'
 })
+
 export class SolicitacoesComponent implements OnInit {
   solicitacoes: Solicitacao[] = [];
 

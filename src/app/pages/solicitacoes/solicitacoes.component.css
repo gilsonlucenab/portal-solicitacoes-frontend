@@ -6,6 +6,7 @@
 }
 
 
+
 /* =========================
    CABEÇALHO
 ========================= */
@@ -27,6 +28,41 @@
   color: #6b7280;
   margin: 0;
   font-size: 14px;
+}
+
+/* =========================
+   NAVEGAÇÃO
+========================= */
+
+.cabecalho-direita {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menu {
+  display: flex;
+  gap: 8px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 13px;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.menu a:hover {
+  background: #f3f4f6;
+  color: #2563eb;
+}
+
+.menu a.ativo {
+  background: #eff6ff;
+  color: #2563eb;
 }
 
 
@@ -337,6 +373,20 @@ tbody tr:last-child td {
     align-items: flex-start;
     gap: 15px;
   }
+
+  .cabecalho-direita {
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.menu {
+  width: 100%;
+}
+
+.menu a {
+  flex: 1;
+  text-align: center;
+}
 
   .linha-formulario {
     flex-direction: column;

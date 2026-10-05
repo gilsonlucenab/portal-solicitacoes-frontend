@@ -163,7 +163,23 @@ main {
 .botao-principal:hover {
   background: #1d4ed8;
 }
+.botao-sair {
+  border: none;
+  background: transparent;
+  color: #4b5563;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 13px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
 
+.botao-sair:hover {
+  background: #f3f4f6;
+  color: #2563eb;
+}
 
 /* =========================
    RECURSOS

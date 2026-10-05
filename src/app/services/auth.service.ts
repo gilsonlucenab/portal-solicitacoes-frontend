@@ -58,8 +58,28 @@ export class AuthService {
       {},
       {
         withCredentials: true,
+        headers: {
+          'X-XSRF-TOKEN': this.getCsrfToken()
+        },
         responseType: 'text'
       }
+    );
+  }
+
+  private getCsrfToken(): string {
+
+    const cookies = document.cookie.split(';');
+
+    const csrfCookie = cookies.find(cookie =>
+      cookie.trim().startsWith('XSRF-TOKEN=')
+    );
+
+    if (!csrfCookie) {
+      return '';
+    }
+
+    return decodeURIComponent(
+      csrfCookie.split('=')[1]
     );
   }
 }

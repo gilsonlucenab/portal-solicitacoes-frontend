@@ -1,11 +1,34 @@
 <div class="pagina">
 
-  <!-- CABEÇALHO -->
-  <div class="cabecalho">
-    <div>
-      <h2>Solicitações</h2>
-      <p>Gerencie as solicitações internas</p>
-    </div>
+ <!-- CABEÇALHO -->
+<div class="cabecalho">
+
+  <div>
+    <h2>Solicitações</h2>
+    <p>Gerencie as solicitações internas</p>
+  </div>
+
+  <div class="cabecalho-direita">
+
+    <nav class="menu">
+
+      <a
+        routerLink="/"
+        routerLinkActive="ativo"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Início
+      </a>
+
+      <a
+        routerLink="/solicitacoes"
+        routerLinkActive="ativo"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Solicitações
+      </a>
+
+    </nav>
 
     <button
       class="botao-novo"
@@ -14,7 +37,10 @@
     >
       + Nova solicitação
     </button>
+
   </div>
+
+</div>
 
 
   <!-- FILTROS -->
