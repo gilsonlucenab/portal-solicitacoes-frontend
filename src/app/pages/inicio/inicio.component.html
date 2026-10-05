@@ -1,20 +1,167 @@
-<div class="container">
-  <header class="header">
-    <h1>Portal de Solicitações</h1>
-    <p>Gerenciamento de solicitações internas</p>
+<div class="pagina">
+
+  <!-- CABEÇALHO -->
+  <header class="cabecalho">
+
+    <div class="identidade">
+
+      <div class="logo">
+        PS
+      </div>
+
+      <div>
+        <h1>Portal de Solicitações</h1>
+        <p>Gerenciamento de solicitações internas</p>
+      </div>
+
+    </div>
+
+
+    <!-- MENU -->
+    <nav class="menu">
+
+      <a
+        routerLink="/"
+        routerLinkActive="ativo"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Início
+      </a>
+
+      <a
+        routerLink="/solicitacoes"
+        routerLinkActive="ativo"
+      >
+        Solicitações
+      </a>
+
+    </nav>
+
   </header>
 
-  <nav class="menu">
-    <a routerLink="/">Início</a>
-    <a routerLink="/solicitacoes">Solicitações</a>
-  </nav>
 
-  <main class="content">
-    <h2>Bem-vindo ao Portal</h2>
-    <p>Gerencie suas solicitações de forma simples e organizada.</p>
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
 
-    <button routerLink="/solicitacoes">
-      Acessar solicitações
-    </button>
+    <!-- CARD DE APRESENTAÇÃO -->
+    <section class="card-boas-vindas">
+
+      <div class="conteudo-boas-vindas">
+
+        <span class="etiqueta">
+          Portal interno
+        </span>
+
+        <h2>
+          Bem-vindo ao Portal de Solicitações
+        </h2>
+
+        <p>
+          Gerencie suas solicitações internas de forma simples,
+          organizada e eficiente.
+        </p>
+
+        <button
+          class="botao-principal"
+          type="button"
+          routerLink="/solicitacoes"
+        >
+          Acessar solicitações
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- RECURSOS -->
+    <section class="recursos">
+
+      <div class="cabecalho-secao">
+
+        <h2>
+          Recursos do portal
+        </h2>
+
+        <p>
+          Tenha controle sobre suas solicitações em um único lugar.
+        </p>
+
+      </div>
+
+
+      <div class="cards-recursos">
+
+        <!-- CARD 1 -->
+        <div class="card-recurso">
+
+          <div class="icone">
+            +
+          </div>
+
+          <h3>
+            Criar solicitações
+          </h3>
+
+          <p>
+            Registre novas demandas internas informando título,
+            descrição e categoria.
+          </p>
+
+        </div>
+
+
+        <!-- CARD 2 -->
+        <div class="card-recurso">
+
+          <div class="icone">
+            ✓
+          </div>
+
+          <h3>
+            Acompanhar status
+          </h3>
+
+          <p>
+            Acompanhe o andamento das solicitações desde a abertura
+            até a conclusão.
+          </p>
+
+        </div>
+
+
+        <!-- CARD 3 -->
+        <div class="card-recurso">
+
+          <div class="icone">
+            🔎
+          </div>
+
+          <h3>
+            Consultar solicitações
+          </h3>
+
+          <p>
+            Utilize filtros para localizar rapidamente as solicitações
+            cadastradas.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
   </main>
+
+
+  <!-- RODAPÉ -->
+  <footer class="rodape">
+
+    <p>
+      Portal de Solicitações Internas
+    </p>
+
+  </footer>
+
 </div>

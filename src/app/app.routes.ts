@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-
 import { InicioComponent } from './pages/inicio/inicio.component';
-import { SolicitacoesComponent } from './pages/solicitacoes/solicitacoes.component';
 import { LoginComponent } from './pages/login/login.component';
+import { SolicitacoesComponent } from './pages/solicitacoes/solicitacoes.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -15,7 +15,8 @@ export const routes: Routes = [
   },
   {
     path: 'solicitacoes',
-    component: SolicitacoesComponent
+    component: SolicitacoesComponent,
+    canActivate: [authGuard]
   },
   {
     path: '**',

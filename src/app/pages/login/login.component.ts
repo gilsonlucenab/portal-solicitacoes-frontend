@@ -7,8 +7,10 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule,
-    FormsModule],
+  imports: [
+    CommonModule,
+    FormsModule
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -35,7 +37,9 @@ export class LoginComponent {
     ).subscribe({
       next: () => {
         this.carregando = false;
-        this.router.navigate(['/solicitacoes']);
+
+        // Após o login, vai para a página inicial
+        this.router.navigate(['/']);
       },
       error: (error) => {
         console.error('Erro no login:', error);
